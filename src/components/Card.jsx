@@ -1,23 +1,17 @@
-import React from 'react';
+import React from "react";
 
-export default function Card({ img, brand, desc, price, onCartCountChange }) {
-  const onClick=()=>{
-    onCartCountChange(prev=>prev+1)
-
-
-  }
+const Card = ({ cardNumber, expiryDate, cardholderName }) => {
   return (
-    <li className="shadow-md rounded-lg p-2 ">
-      <img className=" rounded-t-lg overflow-hidden" src={img} alt="" />
-      <div className="m-4">
-        <h1 className="pb-1">{brand}</h1>
-        <p className="text-xs">{desc}</p>
-        <p className="text-s">{price}</p>
-        <button onClick={onClick} className="bg-black text-white text-xs p-1 pr-3 pl-3 fs rounded-full">
-          담기
-        </button>
-      </div>
-    </li>
+    <div className="relative w-60 h-36 bg-gray-800 rounded-md flex flex-col justify-center items-center text-white p-4">
+      <div className="absolute top-2 left-2 w-8 h-4 bg-yellow-500 rounded-md"></div>
+      <div className="text-xl font-bold">{cardNumber}</div>
+      <div className="mt-1">{cardholderName || "Name"}</div>
+      <div className="absolute bottom-2 left-2 text-sm">{expiryDate}</div>
+      <button className="mt-2 bg-yellow-500 text-black rounded-full py-1 px-4">
+        이 카드로 결제하기
+      </button>
+    </div>
   );
-}
+};
 
+export default Card;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Card from "./Card";
+import Product_Card from "./Product_Card";
 
-export default function ProductList({ onCartCountChange }) {
+export default function Product_List({ onCartCountChange }) {
   const products = [
     {
       img: "/image/1.png",
@@ -43,7 +43,7 @@ export default function ProductList({ onCartCountChange }) {
 
   return (
     <div style={{ width: "429px" }}>
-      <h1 className="font-bold pt-4 " style={{ fontSize: "30px" }}>
+      <h1 className="font-bold pt-4 " style={{ fontSize: "25px" }}>
         신발 상품 목록
       </h1>
       <p style={{ fontSize: "16px" }}>
@@ -51,14 +51,14 @@ export default function ProductList({ onCartCountChange }) {
       </p>
       <ul style={{ width: "429px" }} className="grid grid-cols-2 ">
         {products.map((products, idx) => (
-          <Card
+          <Product_Card
             key={idx}
             brand={products.brand}
             desc={products.desc}
             price={products.price}
             img={products.img}
             onCartCountChange={onCartCountChange}
-          ></Card>
+          ></Product_Card>
         ))}
       </ul>
     </div>
