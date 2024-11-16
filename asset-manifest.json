@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react_shooking_app/static/css/main.af710010.css",
+    "main.js": "/react_shooking_app/static/js/main.07612064.js",
+    "index.html": "/react_shooking_app/index.html",
+    "main.af710010.css.map": "/react_shooking_app/static/css/main.af710010.css.map",
+    "main.07612064.js.map": "/react_shooking_app/static/js/main.07612064.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af710010.css",
+    "static/js/main.07612064.js"
+  ]
+}
