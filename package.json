@@ -19,6 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build-storybook": "storybook build"
   },
   "eslintConfig": {
@@ -52,9 +54,11 @@
     "@storybook/react-webpack5": "^8.3.5",
     "@storybook/test": "^8.3.5",
     "eslint-plugin-storybook": "^0.9.0",
+    "gh-pages": "^6.2.0",
     "prop-types": "^15.8.1",
     "storybook": "^8.3.5",
     "tailwindcss": "^3.4.13",
     "webpack": "^5.95.0"
-  }
+  },
+  "homepage": "https://dhwldud17.github.io/react_shooking_app/"
 }
