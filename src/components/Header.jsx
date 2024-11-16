@@ -1,29 +1,27 @@
 import React from "react";
-import { BsCart } from "react-icons/bs";
-import { BsCartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-export default function Header({ cartCount }) {
+function Header({ cartCount }) {
   return (
-    <header className=" bg-black" style={{ height: "69px" }}>
-      {cartCount === 0 ? (
-        <BsCart
-          className="text-white float-right mr-6 mt-5"
-          style={{ fontSize: "26px" }}
-        />
-      ) : (
-        <>
-          <BsCartFill
-            className="text-white float-right mr-6 mt-5"
-            style={{ fontSize: "26px" }}
-          />
-          <span
-            className=" rounded-full w-4 h-4 bg-white float-right pl-1 pb-2 mt-3"
-            style={{ fontSize: "12px" }}
-          >
+    <header className="flex justify-between p-4 bg-black text-white">
+      <Link to="/" className="text-xl font-bold">
+        Shooking
+      </Link>
+      <Link to="/cart" className="relative">
+        <span
+          className="material-icons text-lg"
+          style={{ transform: "translateX(-10px)" }}
+        >
+          shopping_cart
+        </span>
+        {cartCount > 0 && (
+          <span className="absolute bottom-0 right-0 bg-white text-black rounded-full px-1 py-0.5 text-xs">
             {cartCount}
           </span>
-        </>
-      )}
+        )}
+      </Link>
     </header>
   );
 }
+
+export default Header;
