@@ -1,4 +1,8 @@
 import { useState } from "react"; // React의 useState 훅을 import
+const onAddCard = (newCard) => {
+  console.log("Card added:", newCard);
+  // You can handle the card addition logic here, such as storing the card data.
+};
 
 const Card_Input = () => {
   // 카드 번호, 만료일, 카드 소유자 이름, 보안 코드, 카드 비밀번호 상태 관리
@@ -32,17 +36,17 @@ const Card_Input = () => {
     setPassword(newPassword); // 비밀번호 상태 업데이트
   };
 
-  // // 작성 완료 버튼 클릭 시 호출되는 함수
-  // const handleSubmit = () => {
-  //   const newCard = {
-  //     cardNumber,
-  //     expiryDate,
-  //     cardholderName,
-  //     cvc,
-  //     password,
-  //   };
-  //   onAddCard(newCard); // onAddCard 함수 호출
-  // };
+  //작성 완료 버튼 클릭 시 호출되는 함수
+  const handleSubmit = () => {
+    const newCard = {
+      cardNumber,
+      expiryDate,
+      cardholderName,
+      cvc,
+      password,
+    };
+    onAddCard(newCard); // onAddCard 함수 호출
+  };
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-md">

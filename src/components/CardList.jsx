@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import Card_Input from "./Card_Input"; // Your existing Input component
-import Modal from "./Modal"; // Modal component
-import Card from "./Card"; // New Card component
 
+import Card from "./Card"; // New Card componentimport
+import { useNavigate } from "react-router-dom";
 const CardList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [cards, setCards] = useState([]); // State for storing card details
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true); // Open modal
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false); // Close modal
-  };
-
-  const handleAddCard = (newCard) => {
-    setCards([...cards, newCard]); // Add new card to state
-    handleCloseModal(); // Close modal after adding
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="p-4">
@@ -38,18 +25,10 @@ const CardList = () => {
 
       <div
         className="flex items-center justify-center w-full h-36 border border-gray-300 rounded-lg cursor-pointer  bg-gray-100"
-        onClick={handleOpenModal}
+        onClick={() => navigate("/Card_Input")}
       >
         <span className="text-4xl">+</span>
       </div>
-
-      {/* Modal for Card Input */}
-      {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <Card_Input onAddCard={handleAddCard} />{" "}
-          {/* Pass down function to add card */}
-        </Modal>
-      )}
     </div>
   );
 };

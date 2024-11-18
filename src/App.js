@@ -1,10 +1,11 @@
-import "./index.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductList from "./components/ProductList";
-import ProductDetail from "./components/ProductDetail.jsx";
+import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
 import Header from "./components/Header.jsx";
+import CardList from "./components/CardList"; // Import the CardList component
+import Card_Input from "./components/Card_Input.jsx";
 
 export default function App() {
   const [cart, setCart] = useState(() => {
@@ -45,6 +46,14 @@ export default function App() {
           <Route
             path="/cart"
             element={<Cart cart={cart} setCart={setCart} />}
+          />
+          <Route
+            path="/cardlist" // Add the route for the CardList page
+            element={<CardList />}
+          />
+          <Route
+            path="/card_input" // Add the route for the CardList page
+            element={<Card_Input />}
           />
           <Route
             path="*"

@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Cart({ cart, setCart }) {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const shippingFee = 3000;
   const totalAmount = total + shippingFee;
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleIncrease = (productId) => {
     setCart((prevCart) =>
@@ -99,7 +101,10 @@ function Cart({ cart, setCart }) {
       </div>
 
       <div className="mt-6 flex justify-center">
-        <button className="w-11/12 sm:w-10/12 lg:w-8/12 bg-black text-white text-center py-3 rounded-lg font-semibold hover:bg-gray-800">
+        <button
+          onClick={() => navigate("/CardList")} // Navigate to CardList when clicked
+          className="w-11/12 sm:w-10/12 lg:w-8/12 bg-black text-white text-center py-3 rounded-lg font-semibold hover:bg-gray-800"
+        >
           결제하기
         </button>
       </div>
