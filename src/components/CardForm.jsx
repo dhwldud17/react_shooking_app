@@ -1,17 +1,13 @@
-import { useState } from "react"; // React의 useState 훅을 import
-const onAddCard = (newCard) => {
-  console.log("Card added:", newCard);
-  // You can handle the card addition logic here, such as storing the card data.
-};
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Card_Input = () => {
-  // 카드 번호, 만료일, 카드 소유자 이름, 보안 코드, 카드 비밀번호 상태 관리
-  const [cardNumber, setCardNumber] = useState(""); // 카드 번호 상태
+const CardForm = ({ onAddCard }) => {
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅
+  const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState(""); // 만료일 상태
   const [cardholderName, setCardholderName] = useState(""); // 카드 소유자 이름 상태
   const [cvc, setCvc] = useState(""); // 보안 코드(CVC) 상태
   const [password, setPassword] = useState(["", ""]); // 카드 비밀번호 상태 배열
-
   // 카드 번호 입력 처리 함수
   const handleCardNumberChange = (e) => {
     let value = e.target.value.replace(/\D/g, ""); // 입력값에서 숫자가 아닌 문자를 제거
@@ -36,16 +32,20 @@ const Card_Input = () => {
     setPassword(newPassword); // 비밀번호 상태 업데이트
   };
 
-  //작성 완료 버튼 클릭 시 호출되는 함수
-  const handleSubmit = () => {
-    const newCard = {
-      cardNumber,
-      expiryDate,
-      cardholderName,
-      cvc,
-      password,
-    };
-    onAddCard(newCard); // onAddCard 함수 호출
+  const handleSaveCard = () => {
+    if (!cardholderName || !cardNumber || !expiryDate || !cvc || !password) {
+      alert("모두 입력해주세요.");
+      return;
+    }
+
+    // 새 카드 데이터 생성
+    const newCard = { cardNumber, expiryDate, cardholderName, cvc, password };
+
+    // 부모 컴포넌트로 카드 데이터 전달
+    onAddCard(newCard);
+
+    // 카드 목록 페이지로 이동
+    navigate("/cards");
   };
 
   return (
@@ -151,11 +151,15 @@ const Card_Input = () => {
       </div>
 
       {/* 작성 완료 버튼 */}
-      <button className="block w-full mt-6 p-2 bg-black text-white rounded-md text-center">
+
+      <button
+        onClick={handleSaveCard}
+        className="block w-full mt-6 p-2 bg-black text-white rounded-md text-center"
+      >
         작성 완료
       </button>
     </div>
   );
 };
 
-export default Card_Input; // Input 컴포넌트 내보내기
+export default CardForm;

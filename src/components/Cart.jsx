@@ -6,7 +6,10 @@ function Cart({ cart, setCart }) {
   const shippingFee = 3000;
   const totalAmount = total + shippingFee;
   const navigate = useNavigate(); // Initialize the navigate function
-
+  const handleCheckout = () => {
+    // 카드 목록 페이지로 이동
+    navigate("/cards");
+  };
   const handleIncrease = (productId) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -102,7 +105,7 @@ function Cart({ cart, setCart }) {
 
       <div className="mt-6 flex justify-center">
         <button
-          onClick={() => navigate("/CardList")} // Navigate to CardList when clicked
+          onClick={handleCheckout} // Navigate to CardList when clicked
           className="w-11/12 sm:w-10/12 lg:w-8/12 bg-black text-white text-center py-3 rounded-lg font-semibold hover:bg-gray-800"
         >
           결제하기

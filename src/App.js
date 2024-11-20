@@ -4,17 +4,26 @@ import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
 import Header from "./components/Header.jsx";
-import CardList from "./components/CardList"; // Import the CardList component
-import Card_Input from "./components/Card_Input.jsx";
+import CardForm from "./components/CardForm.jsx";
+import CardList from "./components/CardList.jsx";
+import CheckoutComplete from "./components/CheckoutComplete.jsx";
 
 export default function App() {
   const [cart, setCart] = useState(() => {
     return JSON.parse(localStorage.getItem("cart")) || [];
   });
 
+  const [cards, setCards] = useState(() => {
+    return JSON.parse(localStorage.getItem("cards")) || [];
+  });
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("cards", JSON.stringify(cards));
+  }, [cards]);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -29,6 +38,10 @@ export default function App() {
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
+  };
+
+  const addCard = (card) => {
+    setCards((prevCards) => [...prevCards, card]);
   };
 
   return (
@@ -47,14 +60,13 @@ export default function App() {
             path="/cart"
             element={<Cart cart={cart} setCart={setCart} />}
           />
+          {/* 카드 관리 페이지 추가 */}
           <Route
-            path="/cardlist" // Add the route for the CardList page
-            element={<CardList />}
+            path="/cards"
+            element={<CardList cards={cards} onAddNew={() => {}} />}
           />
-          <Route
-            path="/card_input" // Add the route for the CardList page
-            element={<Card_Input />}
-          />
+          <Route path="/cards/new" element={<CardForm onAddCard={addCard} />} />
+          <Route path="/checkout-complete" element={<CheckoutComplete />} />
           <Route
             path="*"
             element={
