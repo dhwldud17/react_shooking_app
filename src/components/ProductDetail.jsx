@@ -7,14 +7,14 @@ const productData = {
     name: "브랜드A",
     price: 35000,
     image: "/image/1.png",
-    description: "Great sneakers for running.",
+    description: "편안하고 착용감이 좋은 신발.",
   },
   2: {
     id: 2,
     name: "브랜드A",
     price: 25000,
     image: "/image/2.png",
-    description: "Comfortable and stylish.",
+    description: "힙한 컬러가 매력적인 신발.",
   },
   3: {
     id: 3,
@@ -28,21 +28,21 @@ const productData = {
     name: "브랜드B",
     price: 45000,
     image: "/image/4.png",
-    description: "Best choice for daily wear.",
+    description: "힙한 컬러가 매력적인 신발",
   },
   5: {
     id: 5,
     name: "브랜드C",
     price: 45000,
     image: "/image/5.png",
-    description: "Best choice for daily wear.",
+    description: "매력적인 스타일의 신발.",
   },
   6: {
     id: 6,
     name: "브랜드C",
     price: 45000,
     image: "/image/6.png",
-    description: "Best choice for daily wear.",
+    description: "매력적인 스타일의 신발",
   },
 };
 
@@ -50,31 +50,56 @@ function ProductDetail({ addToCart }) {
   const { id } = useParams();
   const product = productData[id];
 
+  // 현재 상품 제외하고 같은 name 가진 상품 필터링
+  const relatedProducts = Object.values(productData).filter(
+    (item) => item.name === product.name && item.id !== product.id
+  );
+
+  if (!product) {
+    return <div>Product not found!</div>;
+  }
+
   return (
     <div className="p-4">
-      <div className="relative w-full" style={{ paddingTop: "90%" }}>
-        {/* Container with 4:3 aspect ratio */}
+      {/* 상품 상세 */}
+      <div className="relative w-full">
         <img
-          src={product.image}
+          src={process.env.PUBLIC_URL + product.image}
           alt={product.name}
-          className="absolute top-0 left-0 w-full h-full object-cover rounded-md"
+          className="object-cover w-full h-30 rounded-md"
         />
       </div>
-
-      {/* Product Name: Bigger and Bold */}
       <h1 className="text-3xl font-bold mt-4">{product.name}</h1>
-
-      {/* Swapped Price and Description */}
       <p className="text-lg font-semibold mt-2">{product.price}원</p>
       <p className="my-2">{product.description}</p>
-
-      {/* Rounded "Add to Cart" Button */}
       <button
         onClick={() => addToCart(product)}
         className="w-full bg-black text-white py-2 mt-4 rounded-full hover:bg-gray-800"
       >
         장바구니 담기
       </button>
+
+      {/* 관련 상품 */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-semibold mb-2">관련 상품</h2>
+        <h2 className="text-0.4xl  mb-1">
+          '{product.name}'의 다른 신발은 어떠신가요?
+        </h2>
+        <div className="flex gap-4 overflow-x-auto">
+          {relatedProducts.map((item) => (
+            <div key={item.id} className="min-w-[120px]">
+              <div className="relative w-full aspect-square">
+                {/* 1:1 비율 설정 */}
+                <img
+                  src={process.env.PUBLIC_URL + item.image}
+                  alt={item.name}
+                  className="absolute inset-0 object-cover w-full h-full rounded-md"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

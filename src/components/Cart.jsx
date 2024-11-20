@@ -51,36 +51,36 @@ function Cart({ cart, setCart }) {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex p-4 border-b items-center space-x-10"
+              className="flex p-4 border-b items-center space-x-20 py-5 px-6"
             >
               <img
-                src={item.image}
+                src={process.env.PUBLIC_URL + item.image}
                 alt={item.name}
-                className="w-32 h-32 object-cover rounded-lg"
+                className="w-40 h-40 object-cover rounded-lg py-1"
               />
-              <div className="flex flex-col pl-4 space-y-2">
+              <div className="flex flex-col pl-10 space-y-1 ">
                 <span className="font-semibold text-2xl">{item.name}</span>
-                <span className="font-bold text-xl">
+                <span className="font-bold text-3xl">
                   {formatPrice(item.price)}원
                 </span>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-4 py-1">
                   <button
                     onClick={() => handleDecrease(item.id)}
-                    className="bg-gray-300 px-2 py-1 rounded"
+                    className="bg-gray-300 px-2 py-1 rounded-full"
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
                     onClick={() => handleIncrease(item.id)}
-                    className="bg-gray-300 px-2 py-1 rounded"
+                    className="bg-gray-300 px-2 py-1 rounded-full"
                   >
                     +
                   </button>
                 </div>
                 <button
                   onClick={() => handleRemove(item.id)}
-                  className="text-red-600 mt-2"
+                  className="text-red-600  pl-0.5 "
                 >
                   삭제
                 </button>

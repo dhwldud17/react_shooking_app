@@ -45,7 +45,7 @@ const CardList = ({ cards }) => {
         ))}
         <button
           onClick={() => navigate("/cards/new")} // 새 카드 등록 페이지로 이동
-          className="w-full bg-gray-100 border border-gray-300 text-center py-2 rounded-lg"
+          className=" w-full bg-gray-100 border border-gray-300 text-center py-10 px-7 rounded-lg"
         >
           + 새 카드 등록
         </button>

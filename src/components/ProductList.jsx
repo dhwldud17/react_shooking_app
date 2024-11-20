@@ -66,12 +66,11 @@ const ProductList = ({ addToCart }) => {
             className="border rounded-lg p-4 shadow-md hover:shadow-lg"
           >
             <Link to={`/product/${product.id}`} className="block">
-              <div className="relative w-full" style={{ paddingTop: "75%" }}>
-                {/* Set the aspect ratio to 4:3 (height = 75% of width) */}
+              <div className="relative w-full">
                 <img
-                  src={product.image}
+                  src={process.env.PUBLIC_URL + product.image}
                   alt={product.name}
-                  className="object-cover w-full h-full rounded-md absolute top-0 left-0"
+                  className="object-cover w-full h-40 rounded-md"
                 />
               </div>
               <h2 className="text-xl font-semibold mt-2">{product.name}</h2>
