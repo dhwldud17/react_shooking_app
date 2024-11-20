@@ -59,6 +59,5 @@
     "storybook": "^8.3.5",
     "tailwindcss": "^3.4.13",
     "webpack": "^5.95.0"
-  },
-  "homepage": "https://dhwldud17.github.io/react_shooking_app/"
+  }
 }
