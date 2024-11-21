@@ -6,7 +6,7 @@
 - **고객사**: 신발 전문 쇼핑몰 슈킹
 - **대상 고객**: 20-30대
 - **프로젝트 목표**: 모바일과 웹에서 사용자 경험을 개선하고, 장바구니 기능과 상품 목록의 가시성을 강화
-- **디자인 시안**: 고객사에서 제공 예정
+- **디자인 시안**: [(https://www.figma.com/design/DKeR5wR65RkxcAWReoBccl/%EC%9D%91%EC%9A%A9%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%95%88?node-id=140-136&node-type=canvas&t=zQwB2HYTayZkSzsQ-0)
 - **결과물 제출 기한**:각 기능 별 2주 내 총합 2달 내
 
 ### 프로젝트명: 
