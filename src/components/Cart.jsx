@@ -51,14 +51,14 @@ function Cart({ cart, setCart }) {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex p-4 border-b items-center space-x-20 py-5 px-6"
+              className="flex p-4 border-b items-center space-x-10 py-5 px-6"
             >
               <img
                 src={process.env.PUBLIC_URL + item.image}
                 alt={item.name}
                 className="w-40 h-40 object-cover rounded-lg py-1"
               />
-              <div className="flex flex-col pl-10 space-y-1 ">
+              <div className="flex flex-col pl-4 space-y-1 ">
                 <span className="font-semibold text-2xl">{item.name}</span>
                 <span className="font-bold text-3xl">
                   {formatPrice(item.price)}원

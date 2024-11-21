@@ -31,11 +31,11 @@ export default function App() {
       if (existingProduct) {
         return prevCart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + product.quantity } // 선택한 수량만큼 추가
             : item
         );
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product }]; // 새로 추가할 때, 선택한 수량 포함
       }
     });
   };
@@ -66,7 +66,10 @@ export default function App() {
             element={<CardList cards={cards} onAddNew={() => {}} />}
           />
           <Route path="/cards/new" element={<CardForm onAddCard={addCard} />} />
-          <Route path="/checkout-complete" element={<CheckoutComplete />} />
+          <Route
+            path="/checkout-complete"
+            element={<CheckoutComplete cart={cart} />}
+          />
           <Route
             path="*"
             element={

@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const productData = {
   1: {
@@ -48,7 +48,9 @@ const productData = {
 
 function ProductDetail({ addToCart }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = productData[id];
+  const [quantity, setQuantity] = useState(1); // 카트 수량 상태
 
   // 현재 상품 제외하고 같은 name 가진 상품 필터링
   const relatedProducts = Object.values(productData).filter(
@@ -58,6 +60,16 @@ function ProductDetail({ addToCart }) {
   if (!product) {
     return <div>Product not found!</div>;
   }
+
+  // 수량 감소 함수
+  const decreaseQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  // 수량 증가 함수
+  const increaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
 
   return (
     <div className="p-4">
@@ -70,10 +82,29 @@ function ProductDetail({ addToCart }) {
         />
       </div>
       <h1 className="text-3xl font-bold mt-4">{product.name}</h1>
-      <p className="text-lg font-semibold mt-2">{product.price}원</p>
+
       <p className="my-2">{product.description}</p>
+      <p className="text-lg font-semibold mt-2">{product.price}원</p>
+
+      {/* 수량 선택 UI */}
+      <div className="flex items-center gap-4 mt-4">
+        <button
+          onClick={decreaseQuantity}
+          className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+        >
+          -
+        </button>
+        <span className="text-xl font-bold">{quantity}</span>
+        <button
+          onClick={increaseQuantity}
+          className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+        >
+          +
+        </button>
+      </div>
+
       <button
-        onClick={() => addToCart(product)}
+        onClick={() => addToCart({ ...product, quantity })}
         className="w-full bg-black text-white py-2 mt-4 rounded-full hover:bg-gray-800"
       >
         장바구니 담기
@@ -87,9 +118,12 @@ function ProductDetail({ addToCart }) {
         </h2>
         <div className="flex gap-4 overflow-x-auto">
           {relatedProducts.map((item) => (
-            <div key={item.id} className="min-w-[120px]">
+            <div
+              key={item.id}
+              className="min-w-[120px] cursor-pointer"
+              onClick={() => navigate(`/product/${item.id}`)}
+            >
               <div className="relative w-full aspect-square">
-                {/* 1:1 비율 설정 */}
                 <img
                   src={process.env.PUBLIC_URL + item.image}
                   alt={item.name}
